@@ -5,7 +5,7 @@
   "scripts": {
     "build": "yarn build:lib && yarn build:assets",
     "build:lib": "npx tsc",
-    "build:assets": "cp -r src/templates build/",
+    "build:assets": "cp -r templates build/",
     "dev": "npx nodemon src/main.ts",
     "start": "node build/main"
   },
