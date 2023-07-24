@@ -1,0 +1,27 @@
+{
+  "name": "mailer",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn build:lib && yarn build:assets",
+    "build:lib": "npx tsc",
+    "build:assets": "cp -r src/templates build/",
+    "dev": "npx nodemon src/main.ts",
+    "start": "node build/main"
+  },
+  "dependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/mustache": "^4.2.2",
+    "@types/nodemailer": "^6.4.8",
+    "commander": "^11.0.0",
+    "dotenv": "^16.3.1",
+    "mustache": "^4.2.0",
+    "nodemailer": "^6.9.4",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/nodemon": "^1.19.2",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1"
+  }
+}
