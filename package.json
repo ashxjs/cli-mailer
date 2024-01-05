@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "yarn build:lib && yarn build:assets",
+    "build": "rm -rf build && yarn build:lib && yarn build:assets",
     "build:lib": "npx tsc",
-    "build:assets": "cp -r templates build/",
+    "build:assets": "cp -r templates build/ && cp .env build/",
     "dev": "npx nodemon src/main.ts",
-    "start": "node build/main"
+    "start": "node build/src/main"
   },
   "dependencies": {
     "@types/commander": "^2.12.2",

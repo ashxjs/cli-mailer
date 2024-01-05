@@ -6,23 +6,28 @@ class Mailer {
 
   constructor({ host, port, auth }: IMailer) {
     this._transport = createTransport({ host, port, auth });
+
+  try {
+      this._transport.verify();
+  } catch(err) {
+      console.error("ERROR:constructor:verify: ", { err });
+  }
   }
 
   public async sendMail(payload: ISendEmailPayload) {
-    return await this._transport.sendMail(payload, (err) => {
-      if (err) {
-        console.error("could not send email", payload);
-      }
-      console.log("mail have been sent");
-    });
+    try {
+      return await this._transport.sendMail(payload);
+    } catch (err) {
+      console.error("err: ", err);
+    }
   }
 }
 
 export default new Mailer({
-  host: process.env.SMTP_HOST || "",
-  port: +(process.env.SMTP_PORT || 0),
+  host: "in-v3.mailjet.com",
+  port: 2525,
   auth: {
-    user: process.env.SMTP_USER_ID || "",
-    pass: process.env.SMTP_USER_PWD || "",
+    user: process.env.MJ_APIKEY || "",
+    pass: process.env.MJ_APIKEY_PRIVATE || "",
   },
 });
